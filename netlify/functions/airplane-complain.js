@@ -69,8 +69,6 @@ exports.handler = async (event, context) => {
         }, { sel, val })
     }
 
-    const screenshot = await page.screenshot({ encoding: 'base64' });
-
     await browser.close();
 
     return {
