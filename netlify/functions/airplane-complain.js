@@ -47,30 +47,32 @@ exports.handler = async (event, context) => {
     await page.click('#c1_next');
     await page.waitForNavigation();
     console.log('loginnnn')
-    const screenshot = await page.screenshot({ encoding: 'base64' });
-    // //end step 1
-    // await page.click('#form-2 .custom-control:nth-child(1) .custom-control-label');
-    // await page.waitForTimeout(300);
-    // await page.click('#c2_next');
-    // await page.waitForNavigation();
-    // // end step 2
-    // await page.waitForTimeout(300);
+    //end step 1
+    await page.click('#form-2 .custom-control:nth-child(1) .custom-control-label');
+    await page.waitForTimeout(300);
+    await page.click('#c2_next');
+    await page.waitForNavigation();
+    console.log('end step 1');
+    // end step 2
+    await page.waitForTimeout(300);
+    await page.type('#date', currentDate);
+    await page.waitForTimeout(300);
+    await page.type('#time', currentTime);
+    await page.waitForTimeout(200);
+    await page.click('#cs_next');
+    await page.waitForNavigation();
+    console.log('end step 2');
+    //end step 3
+    await page.waitForTimeout(300);
+    await setSelectVal('#cause', '7');
+    console.log('end step 3');
+    // const screenshot = await page.screenshot({ encoding: 'base64' });
 
-    // await page.type('#date', currentDate);
-    // await page.waitForTimeout(300);
-    // await page.type('#time', currentTime);
-    // await page.waitForTimeout(200);
-    // await page.click('#cs_next');
-    // await page.waitForNavigation();
-    // //end step 3
-    // await page.waitForTimeout(300);
-    // await setSelectVal('#cause', '7');
-
-    // async function setSelectVal(sel, val) {
-    //     page.evaluate((data) => {
-    //         return document.querySelector(data.sel).value = data.val
-    //     }, { sel, val })
-    // }
+    async function setSelectVal(sel, val) {
+        page.evaluate((data) => {
+            return document.querySelector(data.sel).value = data.val
+        }, { sel, val })
+    }
 
     await browser.close();
 
@@ -78,7 +80,7 @@ exports.handler = async (event, context) => {
         statusCode: 200,
         body: JSON.stringify({
             message: `Gelukt!`,
-            buffer: screenshot
+            buffer: 'screenshot'
         })
     }
 
