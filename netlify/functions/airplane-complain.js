@@ -43,27 +43,21 @@ exports.handler = async (event, context) => {
     await page.waitForNavigation();
     //end login
     await page.click('#form-1 .custom-control:nth-child(1) .custom-control-label');
-    await page.waitForTimeout(300);
     await page.click('#c1_next');
     await page.waitForNavigation();
     console.log('loginnnn')
     //end step 1
     await page.click('#form-2 .custom-control:nth-child(1) .custom-control-label');
-    await page.waitForTimeout(300);
     await page.click('#c2_next');
     await page.waitForNavigation();
     console.log('end step 1');
     // end step 2
-    await page.waitForTimeout(300);
     await page.type('#date', currentDate);
-    await page.waitForTimeout(300);
     await page.type('#time', currentTime);
-    await page.waitForTimeout(200);
     await page.click('#cs_next');
     await page.waitForNavigation();
     console.log('end step 2');
     //end step 3
-    await page.waitForTimeout(300);
     await setSelectVal('#cause', '7');
     console.log('end step 3');
     // const screenshot = await page.screenshot({ encoding: 'base64' });
