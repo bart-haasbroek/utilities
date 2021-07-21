@@ -12,7 +12,7 @@ exports.handler = async (event, context) => {
 
     await page.goto('https://bitsofco.de', { waitUntil: 'networkidle2' });
 
-    const screenshot = await page.screenshot({ encoding: 'binary' });
+    const screenshot = await page.screenshot({ encoding: 'base64' });
 
     await browser.close();
 
