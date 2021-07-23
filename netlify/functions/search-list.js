@@ -16,9 +16,7 @@ exports.handler = async (event, context) => {
     });
     return {
         statusCode: 200,
-        body: JSON.stringify(
-            orderedMatches.join('\n')
-        ),
+        body: JSON.stringify(orderedMatches),
     };
     // return {
     //     statusCode: 200,
