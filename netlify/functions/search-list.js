@@ -4,18 +4,30 @@ const list = ["tame impala", "foo fighters", "the killers", "linkin park", "cold
 exports.handler = async (event, context) => {
     const letters = event.queryStringParameters.letters || "";
     //const letters = 'nopdgkias';
-    let regex = new RegExp(`[${letters} \s]+`, 'i');
-    const matches = list.filter((name) => {
-        const match = name.match(regex) || [];
-        return name === match[0];
-    });
-    const orderedMatches = matches.sort((a, b) => b.length - a.length).map((match) => {
+    const fn = function (letters) {
+        let regex = new RegExp(`[${letters} \s]+`, 'i');
+        return list.filter((name) => {
+            const match = name.match(regex) || [];
+            return name === match[0];
+        });
+    }
+    const orderedMatches = fn(letters).sort((a, b) => b.length - a.length).map((match) => {
         return `${match}(${match.length})`
-    })
+    });
     return {
         statusCode: 200,
-        body: JSON.stringify(orderedMatches),
+        body: JSON.stringify(
+            orderedMatches.join('\r\n')
+        ),
     };
+    // return {
+    //     statusCode: 200,
+    //     body: JSON.stringify({
+    //         arr: orderedMatches,
+    //         fn: fn.toString(),
+    //         formatted: orderedMatches.join('\r\n')
+    //     }),
+    // };
 };
 
 
