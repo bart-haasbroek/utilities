@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
     return {
         statusCode: 200,
         body: JSON.stringify(
-            orderedMatches.join('\r\n')
+            orderedMatches.join('\n')
         ),
     };
     // return {
