@@ -32,6 +32,12 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    [
+      "bootstrap-vue/nuxt",
+      {
+        icons: true,
+      },
+    ],
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa

@@ -36,8 +36,8 @@ export default {
           icon: "book"
         },
         {
-          url: "/tags",
-          title: "tags",
+          url: "/utilities",
+          title: "Utilities",
           icon: "tags"
         }
       ]
