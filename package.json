@@ -17,6 +17,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "chrome-aws-lambda": "^10.1.0",
     "core-js": "^3.15.1",
+    "nintendo-switch-eshop": "^6.0.1",
     "nuxt": "^2.15.7",
     "puppeteer-core": "^10.1.0"
   },
@@ -31,6 +32,8 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.12.1",
     "jest": "^27.0.5",
+    "sass": "^1.43.2",
+    "sass-loader": "10.1.1",
     "vue-jest": "^3.0.4"
   }
 }

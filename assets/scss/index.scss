@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+html {
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  background: #ffe9e9;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+img {
+  display: block;
+}
+
+input {
+  margin: 0;
+  border: none;
+  padding: 8px 10px;
+  display: block;
+  width: 100%;
+}
+
+.button {
+  display: block;
+  padding: 14px 20px;
+  font-size: 16px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  background: #42d3ec;
+  color: white;
+}
+
+.round-button {
+  border-radius: 100%;
+  width: 75px;
+  height: 75px;
+  font-size: 12px;
+  padding: 10px;
+  border: 2px solid #42d3ec;
+  background: transparent;
+  color: #1d1d1d;
+}
+
+.content-wrapper {
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 1080px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
