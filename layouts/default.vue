@@ -33,12 +33,12 @@ export default {
         {
           url: "/",
           title: "Home",
-          icon: "book"
+          icon: "house-door"
         },
         {
           url: "/about",
           title: "Over de app",
-          icon: "tags"
+          icon: "info-circle"
         }
       ]
     };
