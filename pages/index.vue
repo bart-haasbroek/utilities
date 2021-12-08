@@ -1,39 +1,38 @@
 <template>
   <div class="page-wrapper content-wrapper">
     <app-grid :columns="3">
-      <b-card title="Card title" sub-title="Card subtitle">
+      <b-card
+        v-for="utility in utilities"
+        :key="utility.id"
+        :title="utility.title"
+        :sub-title="utility.description"
+      >
         <NuxtLink
           :to="{ name: 'utilities-name', params: { name: 'artist-search' } }"
         >
-          Navigeer
+          Verder
         </NuxtLink>
-      </b-card>
-      <b-card title="Card title" sub-title="Card subtitle">
-        <b-card-text>
-          Some quick example text to build on the <em>card title</em> and make
-          up the bulk of the card's content.
-        </b-card-text>
-
-        <b-card-text>A second paragraph of text in the card.</b-card-text>
-
-        <a href="#" class="card-link">Card link</a>
-        <b-link href="#" class="card-link">Another link</b-link>
-      </b-card>
-      <b-card title="Card title" sub-title="Card subtitle">
-        <b-card-text>
-          Some quick example text to build on the <em>card title</em> and make
-          up the bulk of the card's content.
-        </b-card-text>
-
-        <b-card-text>A second paragraph of text in the card.</b-card-text>
-
-        <a href="#" class="card-link">Card link</a>
-        <b-link href="#" class="card-link">Another link</b-link>
       </b-card>
     </app-grid>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  created() {
+    this.$store.commit("app/setPagetitle", "Home");
+  },
+  data() {
+    return {
+      utilities: [
+        {
+          id: 1,
+          title: "Artiesten zoeken",
+          description: "Vind artiesten op basis van een serie letters",
+          name: "artist-search"
+        }
+      ]
+    };
+  }
+};
 </script>

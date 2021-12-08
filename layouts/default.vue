@@ -13,7 +13,7 @@
             Terug
           </b-button>
           <p class="page-title">
-            title
+            {{ $store.state.app.pageTitle }}
           </p>
         </div>
       </header>
@@ -36,8 +36,8 @@ export default {
           icon: "book"
         },
         {
-          url: "/utilities",
-          title: "Utilities",
+          url: "/about",
+          title: "Over de app",
           icon: "tags"
         }
       ]
@@ -99,6 +99,7 @@ header {
 .page-wrapper {
   width: 100%;
   padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 footer {
