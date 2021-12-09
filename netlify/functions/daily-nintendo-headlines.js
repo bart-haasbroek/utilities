@@ -1,7 +1,6 @@
 const chromium = require('chrome-aws-lambda');
 
 exports.handler = async (event, context) => {
-    const onlyTitles = event.queryStringParameters.onlyTitles || false;
     const browser = await chromium.puppeteer.launch({
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
