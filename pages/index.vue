@@ -2,13 +2,13 @@
   <div class="page-wrapper content-wrapper">
     <app-grid :columns="3">
       <b-card
-        v-for="utility in utilities"
+        v-for="utility in articles"
         :key="utility.id"
         :title="utility.title"
-        :sub-title="utility.description"
+        :sub-title="utility.summary"
       >
         <NuxtLink
-          :to="{ name: 'utilities-name', params: { name: 'artist-search' } }"
+          :to="{ name: 'utilities-slug', params: { slug: utility.slug } }"
         >
           Verder
         </NuxtLink>
@@ -21,6 +21,10 @@
 export default {
   created() {
     this.$store.commit("app/setPagetitle", "Home");
+  },
+  async asyncData({ $content, params }) {
+    const articles = await $content("utilities").fetch();
+    return { articles };
   },
   data() {
     return {

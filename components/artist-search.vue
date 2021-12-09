@@ -1,6 +1,5 @@
 <template>
-  <div class="page-wrapper content-wrapper content-wrapper--narrow">
-    <nuxt-content :document="article" />
+  <div>
     <b-form-input
       class="mt-3"
       v-model="letters"
@@ -23,18 +22,11 @@
 
 <script>
 export default {
-  created() {
-    this.$store.commit("app/setPagetitle", "Artiesten zoeken");
-  },
   data() {
     return {
       letters: "",
       matches: ""
     };
-  },
-  async asyncData({ $content, params }) {
-    const article = await $content("utilities", params.slug).fetch();
-    return { article: article[0] };
   },
   methods: {
     async search() {
@@ -48,4 +40,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss"></style>
