@@ -1,4 +1,4 @@
-const dataset = require('../../assets/salary-map.json');
+const dataset = require('../../assets/salary-map-2022.json');
 
 exports.handler = async (event, context) => {
   const amount = parseFloat(event.queryStringParameters.amount) || null;
