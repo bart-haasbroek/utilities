@@ -125,6 +125,10 @@ function combineTypes(types) {
     const type2Data = dataset[types[1]];
     const combinedResistance = [...type1Data.resistant, ...type2Data.resistant];
     const combinedVulnerability = [...type1Data.vulnerableTo, ...type2Data.vulnerableTo];
+    const resistancePerType = {
+        [types[0]]: type1Data.strongAgainst,
+        [types[1]]: type2Data.strongAgainst
+    };
     const resAndVulCombined = combinedResistance.reduce((list, type) => {
         if (list.vulnerableTo.indexOf(type) > -1) {
             list.resistant = list.resistant.filter((t) => t !== type);
@@ -140,7 +144,8 @@ function combineTypes(types) {
         weakAgainst: uniquify([...type1Data.weakAgainst, ...type2Data.weakAgainst]),
         vulnerableTo: uniquify(resAndVulCombined.vulnerableTo),
         resistant: uniquify(resAndVulCombined.resistant),
-        doubleVulnerability: uniquify(getDoubleVulnerability(resAndVulCombined.vulnerableTo))
+        doubleVulnerability: uniquify(getDoubleVulnerability(resAndVulCombined.vulnerableTo)),
+        resistancePerType,
     }
 }
 
