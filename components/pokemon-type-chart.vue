@@ -1,11 +1,20 @@
 <template>
   <div>
-    <b-form-input
-      class="mt-3"
-      v-model="typeToCheck"
-      placeholder="Zoek een type"
-    ></b-form-input>
-    <b-button class="mt-3" @click="getTypes" :disabled="!typeToCheck"
+    <div class="flex">
+      <b-form-select
+        v-model="type1"
+        :options="getOptions"
+        size="md"
+        class="mt-3 mr-3"
+      ></b-form-select>
+      <b-form-select
+        v-model="type2"
+        :options="getOptions"
+        size="md"
+        class="mt-3"
+      ></b-form-select>
+    </div>
+    <b-button class="mt-3" @click="getTypes" :disabled="!type1"
       >Zoeken</b-button
     >
 
@@ -95,21 +104,115 @@ export default {
   data() {
     return {
       typeToCheck: "",
-      data: ""
+      type1: null,
+      type2: null,
+      data: "",
+      options: [
+        { value: null, text: "Selecteer een type" },
+        {
+          text: "Normal",
+          value: "normal"
+        },
+        {
+          text: "Fighting",
+          value: "fighting"
+        },
+        {
+          text: "Flying",
+          value: "flying"
+        },
+        {
+          text: "Poison",
+          value: "poison"
+        },
+        {
+          text: "Ground",
+          value: "ground"
+        },
+        {
+          text: "Rock",
+          value: "rock"
+        },
+        {
+          text: "Bug",
+          value: "bug"
+        },
+        {
+          text: "Ghost",
+          value: "ghost"
+        },
+        {
+          text: "Steel",
+          value: "steel"
+        },
+        {
+          text: "Fire",
+          value: "fire"
+        },
+        {
+          text: "Water",
+          value: "water"
+        },
+        {
+          text: "Grass",
+          value: "grass"
+        },
+        {
+          text: "Electric",
+          value: "electric"
+        },
+        {
+          text: "Psychic",
+          value: "psychic"
+        },
+        {
+          text: "Ice",
+          value: "ice"
+        },
+        {
+          text: "Dragon",
+          value: "dragon"
+        },
+        {
+          text: "Fairy",
+          value: "fairy"
+        },
+        {
+          text: "Dark",
+          value: "dark"
+        }
+      ]
     };
   },
   methods: {
     async getTypes() {
+      const typeToCheck = this.type2
+        ? `${this.type1}/${this.type2}`
+        : this.type1;
       let { data } = await this.$axios.get(
-        `/api/pokemon-types?type=${this.typeToCheck}`
+        `/api/pokemon-types?type=${typeToCheck}`
       );
       this.data = data;
+      this.typeToCheck = typeToCheck;
+    }
+  },
+  computed: {
+    getOptions() {
+      return this.options.map(type => {
+        return {
+          ...type,
+          disabled: type.value === this.type1 || type.value === this.type2
+        };
+      });
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.flex {
+  display: flex;
+}
 .type-chart {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
