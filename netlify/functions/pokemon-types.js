@@ -107,11 +107,13 @@ const dataset = {
     }
 }
 
-function uniquify(arr) {
-    return [...arr].reduce((list, entry) => {
-        return list.indexOf(entry) === -1 ? [...list, entry] : list
-    }, [])
-}
+const { uniquify } = require('../../helpers');
+
+// function uniquify(arr, compareFn) {
+//     return [...arr].reduce((list, entry) => {
+//         return list.indexOf(entry) === -1 ? [...list, entry] : list
+//     }, [])
+// }
 
 function getDoubleVulnerability(arr) {
     return arr.reduce((list, type) => {
@@ -129,7 +131,7 @@ function combineTypes(types) {
         [types[0]]: type1Data.strongAgainst,
         [types[1]]: type2Data.strongAgainst
     };
-    const resAndVulCombined = combinedResistance.reduce((list, type) => {
+    const combinedResistanceAndVulnerability = combinedResistance.reduce((list, type) => {
         if (list.vulnerableTo.indexOf(type) > -1) {
             list.resistant = list.resistant.filter((t) => t !== type);
             list.vulnerableTo = list.vulnerableTo.filter((t) => t !== type);
@@ -139,12 +141,13 @@ function combineTypes(types) {
         resistant: combinedResistance,
         vulnerableTo: combinedVulnerability
     });
+    const { vulnerableTo, resistant } = combinedResistanceAndVulnerability;
     return {
         strongAgainst: uniquify([...type1Data.strongAgainst, ...type2Data.strongAgainst]),
         weakAgainst: uniquify([...type1Data.weakAgainst, ...type2Data.weakAgainst]),
-        vulnerableTo: uniquify(resAndVulCombined.vulnerableTo),
-        resistant: uniquify(resAndVulCombined.resistant),
-        doubleVulnerability: uniquify(getDoubleVulnerability(resAndVulCombined.vulnerableTo)),
+        vulnerableTo: uniquify(vulnerableTo),
+        resistant: uniquify(resistant),
+        doubleVulnerability: uniquify(getDoubleVulnerability(vulnerableTo)),
         resistancePerType,
     }
 }
@@ -165,7 +168,9 @@ function getTypeData(typeToCheck) {
 exports.handler = async (event) => {
     const type = event.queryStringParameters.type || null;
     const res = getTypeData(type);
-    console.log('res', res)
+    // if > 2 types --> error
+    // if no type ==> error
+    // if typo / type can not found --> error
     return {
         statusCode: 200,
         body: JSON.stringify(res),

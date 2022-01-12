@@ -53,7 +53,7 @@
         <div>
           <div class="type-chart__category">
             {{ typeToCheck }} is super effectief tegen:
-            <p>{{ typeToCheck }} --> type = super effective)</p>
+            <p>({{ typeToCheck }} --> type = super effective)</p>
           </div>
 
           <b-list-group>
@@ -68,7 +68,7 @@
         <div>
           <div class="type-chart__category">
             {{ typeToCheck }} is niet effectief tegen:
-            <p>{{ typeToCheck }} --> type = not very effective)</p>
+            <p>({{ typeToCheck }} --> type = not very effective)</p>
           </div>
 
           <b-list-group>
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import { uniquify } from "../helpers";
 export default {
   data() {
     return {
@@ -181,14 +182,17 @@ export default {
 
       const doubleVulnerability = data["doubleVulnerability"] || [];
 
+      const combinedVulnerability = uniquify([
+        ...doubleVulnerability,
+        ...data.vulnerableTo
+      ]);
       this.data = {
         ...data,
-        superEffective: [
-          ...doubleVulnerability.map(t => `${t} (4x Effective)`),
-          ...data.vulnerableTo.map(t => `${t} (2x Effective)`)
-        ]
+        superEffective: combinedVulnerability.map((t, index) => {
+          const multiplier = index < doubleVulnerability.length ? 4 : 2;
+          return `${t} (${multiplier}x Effective)`;
+        })
       };
-      console.log("data", this.data);
       this.typeToCheck = typeToCheck;
     }
   },
