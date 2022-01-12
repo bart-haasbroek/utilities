@@ -8,6 +8,8 @@ const dataset = {
     fighting: {
         strongAgainst: ['normal', 'rock', 'steel', 'ice', 'dark'],
         weakAgainst: ['flying', 'poison', 'psychic', 'bug', 'ghost', 'fairy'],
+        resistant: ['rock', 'bug', 'dark'],
+        vulnerableTo: ['flying', 'psychic', 'fairy']
     },
     flying: {
         strongAgainst: ['fighting', 'bug', 'grass'],
@@ -60,7 +62,7 @@ const dataset = {
     water: {
         strongAgainst: ['ground', 'rock', 'fire'],
         weakAgainst: ['water', 'grass', 'dragon'],
-        resistant: ['fire', 'water', 'ice'],
+        resistant: ['steel', 'fire', 'water', 'ice'],
         vulnerableTo: ['grass', 'electric']
     },
     grass: {
@@ -159,6 +161,7 @@ function getTypeData(typeToCheck) {
 
     if (typesToCheck.length === 1) {
         typeData = dataset[typesToCheck[0]];
+        console.log('typeData', typeData);
     } else {
         typeData = combineTypes(typesToCheck);
     }
