@@ -12,7 +12,7 @@ export default {
   async asyncData({ $content, params }) {
     const article = await $content("utilities", params.slug).fetch();
     return { article: article };
-  }
+  },
 };
 </script>
 
