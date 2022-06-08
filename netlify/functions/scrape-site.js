@@ -25,6 +25,9 @@ exports.handler = async (event, context) => {
             body: JSON.stringify('url is required but undefined'),
         };
     }
+    console.log('url', url);
+    console.log('regex', JSON.stringify(regex));
+
     // const url = `https://www.leuk-makelaars.nl/aanbod/woningaanbod/-400000/koop/`;
     const res = await fetch(url);
     const resText = await res.text();
