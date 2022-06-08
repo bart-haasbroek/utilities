@@ -23,6 +23,9 @@
           <div v-html="row"></div>
         </b-list-group-item>
       </b-list-group>
+      <div v-else>
+        {{ response }}
+      </div>
     </div>
   </div>
 </template>
@@ -41,11 +44,20 @@ export default {
           },
           {
             regex: "<h4> (<a.*?>(.*?)<\/a>)",
-            getGroup: 2,
+            resultTemplate: "Titel: $2",
             flags: "g",
           },
         ],
       },
+      //   request: {
+      //     url: "https://www.bol.com/nl/nl/p/super-mario-3d-world-bowser-s-fury-switch/9300000009410369/?bltgh=hl-AJxuCI24WyyCau1JAQw.2_36.38.ProductImage",
+      //     regex: [
+      //       {
+      //         regex: "<span .*>([0-9]+)[\\w\\s].*<sup.*?>([0-9-]+)",
+      //         resultTemplate: "De prijs is: $1,$2",
+      //       },
+      //     ],
+      //   },
     };
   },
   methods: {
