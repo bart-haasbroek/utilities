@@ -36,6 +36,14 @@ export default {
     return {
       responseIsArray: null,
       response: null,
+      // request: {
+      //   url: "https://pokemongolive.com/en/news/",
+      //   regex: [
+      //     {
+      //       regex: "<main .*?>.*?<\/main>",
+      //     },
+      //   ],
+      // },
       request: {
         url: "https://www.dailynintendo.nl",
         regex: [

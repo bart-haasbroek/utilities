@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const cheerio = require('cheerio');
 
 function replacePlaceholders(matches, textToReplace) {
 	const placeholderMatches = textToReplace.match(/\$[0-9]/g);
@@ -31,7 +32,9 @@ exports.handler = async (event, context) => {
     // const url = `https://www.leuk-makelaars.nl/aanbod/woningaanbod/-400000/koop/`;
     const res = await fetch(url);
     const resText = await res.text();
-
+    // const resHtml = await res.html();
+    const $ = cheerio.load(resText);
+console.log('dssd', $('main h4').text());
     const nospaceText = resText.replace(/\s\s+/g, ' ');
     const matches = regex.reduce((prev, curr) => {
         const {regex, resultTemplate = '$0', flags } = curr;
